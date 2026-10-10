@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button';
 const WindowExperience = lazy(() => import('./WindowExperience'));
 
 class ViewerBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false };
+  override state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  render() {
+  override render() {
     if (this.state.failed) return <div className="viewer-placeholder" role="status"><Box /><p>Não foi possível abrir a visualização 3D neste dispositivo.</p><Button variant="outline" onClick={() => this.setState({ failed: false })}><RefreshCw /> Tentar novamente</Button></div>;
     return this.props.children;
   }
