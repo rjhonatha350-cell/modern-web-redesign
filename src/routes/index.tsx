@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/compone
 import architecture from '@/assets/wr-architecture.jpg';
 import facade from '@/assets/wr-facade.jpg';
 import system from '@/assets/wr-system.jpg';
+import { WindowViewer } from '@/components/viewer/WindowViewer';
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [
@@ -48,12 +49,12 @@ function Index() {
         <header className="header site-width">
           <Brand />
           <nav className="desktop-nav" aria-label="Navegação principal">
-            <a className="active" href="#inicio">Início</a><a href="#studio">O studio</a><a href="#solucoes">Soluções</a><a href="#processo">Nosso processo</a><a href="#contato">Contato</a>
+            <a className="active" href="#inicio">Início</a><a href="#studio">O studio</a><a href="#solucoes">Soluções</a><a href="#visualizador">Explore em 3D</a><a href="#contato">Contato</a>
           </nav>
           <Button variant="studio" className="header-cta" asChild><a href={whatsapp} target="_blank" rel="noreferrer">Vamos conversar <ArrowUpRight /></a></Button>
           <Button variant="nav" size="icon" className="mobile-toggle" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
         </header>
-        {menuOpen && <nav className="mobile-menu" aria-label="Menu móvel">{[['Início', '#inicio'], ['O studio', '#studio'], ['Soluções', '#solucoes'], ['Nosso processo', '#processo'], ['Contato', '#contato']].map(([label, href]) => <a key={href} href={href} onClick={closeMenu}>{label}</a>)}</nav>}
+        {menuOpen && <nav className="mobile-menu" aria-label="Menu móvel">{[['Início', '#inicio'], ['O studio', '#studio'], ['Soluções', '#solucoes'], ['Explore em 3D', '#visualizador'], ['Nosso processo', '#processo'], ['Contato', '#contato']].map(([label, href]) => <a key={href} href={href} onClick={closeMenu}>{label}</a>)}</nav>}
         <div className="site-width"><div className="hero-copy">
           <div className="eyebrow">WR Studio · Projetos & design</div>
           <h1>Esquadrias, design<br />e novas <span>possibilidades.</span></h1>
@@ -74,6 +75,7 @@ function Index() {
         </article>)}</div>
         <div className="all-services"><Button variant="link" asChild><a href="#servicos" onClick={(e) => { e.preventDefault(); setAllOpen(true); }}>Todas as nossas especialidades <ArrowRight /></a></Button></div>
       </section>
+      <WindowViewer />
       <section className="section about" id="studio"><div className="site-width about-layout">
         <div className="about-image"><img src={facade} alt="Detalhes de uma fachada em alumínio — imagem conceitual" width={1024} height={1024} loading="lazy" /><span className="about-image-label">Técnica, estética e inovação.</span></div>
         <div className="about-copy"><div className="eyebrow">Muito prazer, WR Studio</div><h2>Um olhar criativo.<br />Uma base técnica sólida.</h2><p>Somos um studio de projetos e design especializado em esquadrias de alumínio. Conectamos funcionalidade, estética e inovação para criar soluções personalizadas.</p><p>Trabalhamos lado a lado com construtoras e fabricantes, do projeto inicial à implementação. Nosso compromisso é entender cada desafio e transformar conhecimento em resultado.</p><div className="about-points">{['Design com propósito', 'Soluções personalizadas', 'Visão integrada', 'Rigor técnico'].map(p => <div key={p}><Check />{p}</div>)}</div></div>
